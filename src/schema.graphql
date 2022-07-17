@@ -1,9 +1,16 @@
 type Query {
+  greetings(name: String): String
   users(query: String): [User!]!
   me: User!
   post: Post!
   posts(query: String): [Post!]!
   comments: [Comment!]!
+  missing_persons(query: String): [MissingPerson]!
+  missing_person: MissingPerson!
+  guardians: [Guardian!]!
+  guardian: Guardian!
+  witnesses: [Witness!]!
+  messages: [Message!]!
 }
 type Mutation {
   createUser(data: CreateUserInput!): User!
@@ -51,6 +58,38 @@ input CreateCommentInput {
 input UpdateCommentInput {
   text: String!
 }
+type MissingPerson {
+  id: ID!
+  first_name: String
+  last_name: String
+  age: Int
+  city: String
+  missing_since: String
+  guardians: [Guardian!]!
+}
+type Guardian {
+  id: ID!
+  first_name: String
+  last_name: String
+  city: String
+  missing_persons: [MissingPerson!]!
+}
+
+type Witness {
+  id: ID!
+  name: String!
+  city: String!
+  messages: [Message!]!
+}
+
+type Message {
+  id: ID!
+  title: String
+  body: String
+  witness: Witness!
+  missing_person: MissingPerson!
+}
+
 type User {
   id: ID!
   name: String!
