@@ -1,8 +1,6 @@
 const Message = {
   witness(parent, args, { db }, info) {
-    return db.witnesses.find((witness) => {
-      witness.id === parent.witness
-    })
+    return db.witnesses.find((witness) => witness.id === parent.witness)
   },
   missing_person(parent, args, { db }, info) {
     return db.missing_persons.find(
