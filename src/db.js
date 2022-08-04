@@ -60,24 +60,28 @@ const guardians = [
     id: "1101",
     first_name: "Eddard Ned",
     last_name: "Stark",
+    email: "ned@email.com",
     city: "Wintefell",
   },
   {
     id: "1102",
     first_name: "Walder",
     last_name: "Frey",
+    email: "walder@email.com",
     city: "Rivverlands",
   },
   {
     id: "1103",
     first_name: "Cersei",
     last_name: "Lannister",
+    email: "cersei@email.com",
     city: "Kings Landing",
   },
   {
     id: "1104",
     first_name: "Jamie",
     last_name: "Lannister",
+    email: "jamie@email.com",
     city: "Kings Landing",
   },
 ]
