@@ -7,6 +7,7 @@ const missing_persons = [
     age: "19",
     missing_since: "07/07/2022",
     guardian: "1101",
+    found: false,
   },
   {
     id: "1002",
@@ -16,6 +17,7 @@ const missing_persons = [
     age: "13",
     missing_since: "06/01/2020",
     guardian: "1101",
+    found: false,
   },
   {
     id: "1003",
@@ -25,6 +27,7 @@ const missing_persons = [
     age: "255",
     missing_since: "05/01/2019",
     guardian: "1102",
+    found: false,
   },
   {
     id: "1004",
@@ -34,6 +37,7 @@ const missing_persons = [
     age: "55",
     missing_since: "05/01/2019",
     guardian: "1102",
+    found: true,
   },
   {
     id: "1005",
@@ -43,6 +47,7 @@ const missing_persons = [
     age: "18",
     missing_since: "05/19/2020",
     guardian: "1103",
+    found: true,
   },
   {
     id: "1006",
@@ -52,6 +57,7 @@ const missing_persons = [
     age: "12",
     missing_since: "02/14/2020",
     guardian: "1101",
+    found: true,
   },
 ]
 
