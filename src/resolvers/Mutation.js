@@ -149,6 +149,9 @@ const Mutation = {
     if (typeof data.body === "string") {
       message.body = data.body
     }
+    if (typeof data.found === "boolean") {
+      message.found = data.found
+    }
 
     return message
   },

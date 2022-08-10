@@ -32,6 +32,7 @@ input updateWitnessInput {
 input updateMessageInput {
   title: String
   body: String
+  found: Boolean
 }
 input updateGuardianInput {
   first_name: String
@@ -69,6 +70,7 @@ input CreateWitnessInput {
 input CreateMessageInput {
   title: String!
   body: String!
+  found: Boolean!
   witness: ID!
   missing_person: ID!
 }
@@ -102,6 +104,7 @@ type Message {
   id: ID!
   title: String
   body: String
+  found: Boolean
   witness: Witness!
   missing_person: MissingPerson!
 }

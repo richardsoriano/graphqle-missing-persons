@@ -122,6 +122,7 @@ const messages = [
     body: "I want to meet this so-called King of the North",
     missing_person: "1001",
     witness: "2004",
+    found: true,
   },
   {
     id: "2101",
@@ -129,6 +130,7 @@ const messages = [
     body: "If you find her, do not confront her. Tell her that her family loves her",
     missing_person: "1002",
     witness: "2002",
+    found: false,
   },
 ]
 
