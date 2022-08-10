@@ -21,6 +21,10 @@ type Mutation {
   updateMissingPerson(id: ID!, data: updateMissingPerson!): MissingPerson!
   updateMessage(id: ID!, data: updateMessageInput!): Message!
 }
+type Subscription {
+  count: Int!
+  message(missingPersonId: ID!): Message!
+}
 input updateWitnessInput {
   name: String
   city: String
@@ -28,6 +32,7 @@ input updateWitnessInput {
 input updateMessageInput {
   title: String
   body: String
+  found: Boolean
 }
 input updateGuardianInput {
   first_name: String
@@ -41,6 +46,7 @@ input updateMissingPerson {
   age: Int
   city: String
   missing_since: String
+  found: Boolean
 }
 input CreateGuardianInput {
   first_name: String!
@@ -54,6 +60,7 @@ input CreateMissingPersonInput {
   age: Int!
   city: String!
   guardian: ID!
+  found: Boolean
 }
 input CreateWitnessInput {
   name: String!
@@ -63,6 +70,7 @@ input CreateWitnessInput {
 input CreateMessageInput {
   title: String!
   body: String!
+  found: Boolean!
   witness: ID!
   missing_person: ID!
 }
@@ -74,6 +82,7 @@ type MissingPerson {
   city: String
   missing_since: String
   guardians: [Guardian!]!
+  found: Boolean
 }
 type Guardian {
   id: ID!
@@ -95,6 +104,7 @@ type Message {
   id: ID!
   title: String
   body: String
+  found: Boolean
   witness: Witness!
   missing_person: MissingPerson!
 }

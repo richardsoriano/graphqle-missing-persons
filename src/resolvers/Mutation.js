@@ -39,7 +39,7 @@ const Mutation = {
     return witness
   },
 
-  createMessage(parent, args, { db }, info) {
+  createMessage(parent, args, { db, pubsub }, info) {
     const witnessExists = db.witnesses.some(
       (witness) => witness.id === args.data.witness
     )
@@ -55,6 +55,8 @@ const Mutation = {
       ...args.data,
     }
     db.messages.push(message)
+    // pubsub.publish(message ${args.data.missing_person}`, { message: message })
+    pubsub.publish("message", { message })
     return message
   },
   updateMissingPerson(parent, args, { db }, info) {
@@ -78,6 +80,9 @@ const Mutation = {
     }
     if (typeof data.age === "number") {
       missing_person.age = data.age
+    }
+    if (typeof data.found === "boolean") {
+      missing_person.found = data.found
     }
     if (typeof data.email === "string") {
       const emailTaken = db.missing_persons.some(
@@ -143,6 +148,9 @@ const Mutation = {
     }
     if (typeof data.body === "string") {
       message.body = data.body
+    }
+    if (typeof data.found === "boolean") {
+      message.found = data.found
     }
 
     return message

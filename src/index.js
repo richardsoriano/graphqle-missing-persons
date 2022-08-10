@@ -3,6 +3,7 @@ import { GraphQLServer, PubSub } from "graphql-yoga"
 import db from "./db"
 import Query from "./resolvers/Query"
 import Mutation from "./resolvers/Mutation"
+import Subscription from "./resolvers/Subscription"
 
 import MissingPerson from "./resolvers/MissingPerson"
 import Guardian from "./resolvers/Guardian"
@@ -16,6 +17,7 @@ const server = new GraphQLServer({
   resolvers: {
     Query,
     Mutation,
+    Subscription,
     MissingPerson,
     Guardian,
     Message,
