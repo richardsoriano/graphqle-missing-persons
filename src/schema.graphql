@@ -1,89 +1,100 @@
 type Query {
-  users(query: String): [User!]!
-  me: User!
-  post: Post!
-  posts(query: String): [Post!]!
-  comments: [Comment!]!
-}
-type Mutation {
-  createUser(data: CreateUserInput!): User!
-  deleteUser(id: ID!): User!
-  updateUser(id: ID!, data: UpdateUserInput!): User!
-  createPost(data: CreatePostInput!): Post!
-  deletePost(id: ID!): Post!
-  updatePost(id: ID!, data: UpdatePostInput!): Post!
-  createComment(data: CreateCommentInput!): Comment!
-  deleteComment(id: ID!): Comment!
-  updateComment(id: ID!, data: UpdateCommentInput!): Comment!
-}
-type Subscription {
-  count: Int!
-  comment(postId: ID!): CommentSubscriptionPayload!
-  post: PostSubscriptionPayload!
-}
-input CreateUserInput {
-  name: String!
-  email: String!
-  age: Int
+  missing_persons(query: String): [MissingPerson]!
+  missing_person: MissingPerson!
+  guardians: [Guardian!]!
+  guardian: Guardian!
+  witnesses: [Witness!]!
+  messages: [Message!]!
 }
 
-input UpdateUserInput {
+type Mutation {
+  createGuardian(data: CreateGuardianInput): Guardian!
+  createMissingPerson(data: CreateMissingPersonInput): MissingPerson!
+  createWitness(data: CreateWitnessInput): Witness!
+  createMessage(data: CreateMessageInput): Message!
+  deleteGuardian(id: ID!): Guardian!
+  deleteMissingPerson(id: ID!): MissingPerson!
+  deleteWitness(id: ID!): Witness!
+  deleteMessage(id: ID!): Message!
+  updateGuardian(id: ID!, data: updateGuardianInput!): Guardian!
+  updateWitness(id: ID!, data: updateWitnessInput!): Witness!
+  updateMissingPerson(id: ID!, data: updateMissingPerson!): MissingPerson!
+  updateMessage(id: ID!, data: updateMessageInput!): Message!
+}
+input updateWitnessInput {
   name: String
-  email: String
-  age: Int
+  city: String
 }
-input CreatePostInput {
-  title: String!
-  body: String!
-  published: Boolean!
-  author: ID!
-}
-input UpdatePostInput {
+input updateMessageInput {
   title: String
   body: String
-  published: Boolean
 }
-input CreateCommentInput {
-  text: String!
-  author: ID!
-  post: ID!
+input updateGuardianInput {
+  first_name: String
+  last_name: String
+  city: String
+  email: String
 }
-input UpdateCommentInput {
-  text: String!
-}
-type User {
-  id: ID!
-  name: String!
-  email: String!
+input updateMissingPerson {
+  first_name: String
+  last_name: String
   age: Int
-  posts: [Post!]!
-  comments: [Comment!]!
+  city: String
+  missing_since: String
 }
-type Post {
-  id: ID!
+input CreateGuardianInput {
+  first_name: String!
+  last_name: String!
+  email: String!
+  city: String!
+}
+input CreateMissingPersonInput {
+  first_name: String!
+  last_name: String!
+  age: Int!
+  city: String!
+  guardian: ID!
+}
+input CreateWitnessInput {
+  name: String!
+  city: String!
+  message: ID!
+}
+input CreateMessageInput {
   title: String!
   body: String!
-  published: Boolean!
-  author: User!
-  comments: [Comment!]!
+  witness: ID!
+  missing_person: ID!
 }
-type Comment {
+type MissingPerson {
   id: ID!
-  text: String!
-  author: User!
-  post: Post!
+  first_name: String
+  last_name: String
+  age: Int
+  city: String
+  missing_since: String
+  guardians: [Guardian!]!
 }
-enum MutationType {
-  CREATED
-  UPDATED
-  DELETED
-}
-type PostSubscriptionPayload {
-  mutation: MutationType!
-  data: Post!
+type Guardian {
+  id: ID!
+  first_name: String
+  last_name: String
+  city: String
+  email: String
+  missing_persons: [MissingPerson!]!
 }
 
-type CommentSubscriptionPayload {
-  mutation: MutationType!
-  data: Comment!
+type Witness {
+  id: ID!
+  name: String!
+  city: String!
+  messages: [Message!]!
+}
+
+type Message {
+  id: ID!
+  title: String
+  body: String
+  witness: Witness!
+  missing_person: MissingPerson!
 }
